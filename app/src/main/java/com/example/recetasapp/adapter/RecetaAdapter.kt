@@ -20,6 +20,7 @@ class RecetaAdapter(
         val titulo: TextView = itemView.findViewById(R.id.tituloReceta)
         val dificultad: TextView = itemView.findViewById(R.id.dificultadReceta)
         val tiempo: TextView = itemView.findViewById(R.id.tiempoReceta)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecetaViewHolder {
