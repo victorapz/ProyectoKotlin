@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- popup_menu.xml -->
+    <item
+        android:id="@+id/popup_recetas"
+        android:title="Recetas"/>
+    <item
+        android:id="@+id/popup_perfiles"
+        android:title="Perfiles"/>
+    <item
+        android:id="@+id/popup_seguidores"
+        android:title="Seguidores"/>
+    <item
+        android:id="@+id/popup_seguidos"
+        android:title="Seguidos"/>
+
+</menu>
