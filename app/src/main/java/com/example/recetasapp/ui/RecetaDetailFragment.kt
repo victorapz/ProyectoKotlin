@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.recetasapp.databinding.FragmentRecetaDetailBinding
@@ -16,9 +17,8 @@ class RecetaDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        @Suppress("DEPRECATION") // no sabia que se podia hacer esto
+        @Suppress("DEPRECATION")
         receta = arguments?.getSerializable("receta") as? Receta
-
     }
 
     override fun onCreateView(
@@ -32,16 +32,34 @@ class RecetaDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        receta?.let {
+        receta?.let { receta ->
             binding?.apply {
-                tituloDetalle.text = it.titulo
-                dificultadDetalle.text = it.dificultad
-                tiempoDetalle.text = it.tiempo
-                descripcionDetalle.text = it.descripcion
+                tituloDetalle.text = receta.titulo
+                dificultadDetalle.text = receta.dificultad
+                tiempoDetalle.text = receta.tiempo
+                descripcionDetalle.text = receta.descripcion
 
                 Glide.with(requireContext())
-                    .load(it.imagenUrl)
+                    .load(receta.imagenUrl)
                     .into(imagenDetalle)
+
+                // INGREDIENTES dinámicos
+                listaIngredientes.removeAllViews()
+                receta.ingredientes.forEach { ingrediente ->
+                    val textView = TextView(requireContext())
+                    textView.text = "• $ingrediente"
+                    textView.textSize = 16f
+                    listaIngredientes.addView(textView)
+                }
+
+                // PREPARACIÓN dinámica
+                listaPreparacion.removeAllViews()
+                receta.preparacion.forEachIndexed { i, paso ->
+                    val textView = TextView(requireContext())
+                    textView.text = "${i + 1}. $paso"
+                    textView.textSize = 16f
+                    listaPreparacion.addView(textView)
+                }
             }
         }
     }
