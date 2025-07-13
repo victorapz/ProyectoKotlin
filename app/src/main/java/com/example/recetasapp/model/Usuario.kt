@@ -1,7 +1,6 @@
 package com.example.recetasapp.model
 
-data class Perfil(
+data class Usuario(
     val nombre: String,
     val correo: String,
-    val tipo: String
 )

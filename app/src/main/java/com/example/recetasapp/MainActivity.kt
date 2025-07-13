@@ -11,9 +11,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.recetasapp.ui.HomeFragment
 import com.example.recetasapp.ui.perfil.PerfilFragment
 import androidx.appcompat.widget.Toolbar
-import com.example.recetasapp.ui.perfil.ListaPerfilesFragment
 
-class MainActivity : AppCompatActivity() {
+class  MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -64,19 +63,19 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
-                R.id.popup_perfiles -> {
-                    supportActionBar?.title = "Lista de Perfiles"
+                R.id.popup_perfil -> {
+                    supportActionBar?.title = "Perfil"
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.contenedorFragmento, ListaPerfilesFragment())  // <-- ¡Aquí va la lista!
+                        .replace(R.id.contenedorFragmento, PerfilFragment())
                         .addToBackStack(null)
                         .commit()
                     true
                 }
-                // ...otros casos...
+
                 else -> false
             }
         }
         popup.show()
     }
-
 }
+
