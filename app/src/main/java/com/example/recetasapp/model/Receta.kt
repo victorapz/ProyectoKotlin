@@ -10,5 +10,5 @@ data class Receta(
     val tiempo: String,
     val descripcion: String,
     val ingredientes: List<String>,
-    val preparacion: List<String>
+    val preparacion: List<String>,
 ) : Serializable
