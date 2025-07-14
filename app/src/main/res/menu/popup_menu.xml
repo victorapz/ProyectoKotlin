@@ -7,5 +7,9 @@
     <item
         android:id="@+id/popup_perfil"
         android:title="Perfil"/>
+    <item
+        android:id="@+id/popup_notificaciones"
+        android:title="Notificaciones" />
+
 
 </menu>

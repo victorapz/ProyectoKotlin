@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.recetasapp.ui.HomeFragment
+import com.example.recetasapp.ui.notification.NotificacionesFragment
 import com.example.recetasapp.ui.perfil.PerfilFragment
 
 class MainActivity : AppCompatActivity() {
@@ -36,10 +37,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflamos el menú con la búsqueda añadida
         menuInflater.inflate(R.menu.toolbar_menu, menu)
 
-        // Configuramos el SearchView
         val searchItem = menu?.findItem(R.id.action_search)
         val searchView = searchItem?.actionView as? SearchView
         searchView?.apply {
@@ -91,13 +90,21 @@ class MainActivity : AppCompatActivity() {
                         .commit()
                     true
                 }
+                R.id.popup_notificaciones -> {
+                    supportActionBar?.title = "Notificaciones"
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.contenedorFragmento, NotificacionesFragment())
+                        .addToBackStack(null)
+                        .commit()
+                    true
+                }
+
                 else -> false
             }
         }
         popup.show()
     }
 
-    // Envía la query al HomeFragment para que filtre su lista
     private fun passQueryToFragment(query: String) {
         (supportFragmentManager.findFragmentById(R.id.contenedorFragmento)
                 as? HomeFragment)?.filterRecipes(query)
